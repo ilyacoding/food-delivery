@@ -1,0 +1,20 @@
+server:
+  port: 8080
+  error:
+    whitelabel:
+    include-stacktrace: always
+security.jwt:
+  tokenExpirationTime: 1440 # Number of minutes
+  refreshTokenExpTime: 10080 # Minutes
+  tokenIssuer: Food Delivery Corp.
+  tokenSigningKey: sao32iufns3295a
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/food_delivery?useSSL=false
+    username: food_delivery
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
