@@ -7,6 +7,9 @@
 *.userosscache
 *.sln.docstates
 
+# Intellij IDEA
+backend/target
+
 # User-specific files (Mac OS)
 .DS_Store
 
