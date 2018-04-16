@@ -4,14 +4,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import server.entity.Role;
+import server.entity.SupplierProfile;
 import server.entity.User;
 import server.exception.EntityNotFoundException;
 import server.repository.RoleRepository;
+import server.repository.SupplierProfileRepository;
 import server.repository.UserRepository;
 
 import java.util.Arrays;
@@ -27,6 +30,9 @@ public class UserService {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private SupplierProfileRepository supplierProfileRepository;
 
     @Autowired
     private BCryptPasswordEncoder encoder;
@@ -53,13 +59,26 @@ public class UserService {
         }
     }
 
-    @PreAuthorize("hasRole('USER') or hasRole('SUPPLIER')")
     public User update(Long id, User newUser) throws Exception {
         try {
             Optional<User> optionalUser = repository.findById(id);
             if (optionalUser.isPresent()) {
                 User user = optionalUser.get();
-                user.setPassword(encoder.encode(newUser.getPassword()));
+                if (newUser.getPassword() != null) {
+                    user.setPassword(encoder.encode(newUser.getPassword()));
+                }
+
+                if (newUser.getFirstName() != null) {
+                    user.setFirstName(newUser.getFirstName());
+                }
+
+                if (newUser.getLastName() != null) {
+                    user.setLastName(newUser.getLastName());
+                }
+
+                if (newUser.getPhoneNumber() != null) {
+                    user.setPhoneNumber(newUser.getPhoneNumber());
+                }
                 return repository.save(user);
             } else {
                 throw new EntityNotFoundException(User.class, "id", id.toString());
@@ -70,7 +89,6 @@ public class UserService {
         }
     }
 
-    @PreAuthorize("hasRole('USER') or hasRole('SUPPLIER')")
     public void delete(Long id) throws Exception {
         try {
             Optional<User> user = repository.findById(id);
@@ -95,7 +113,7 @@ public class UserService {
         }
     }
 
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('SUPPLIER') or hasRole('ADMIN')")
     public User findById(Long id) throws EntityNotFoundException {
         try {
             Optional<User> user = repository.findById(id);

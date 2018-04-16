@@ -4,8 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -22,6 +20,19 @@ public class User {
     @Column
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
+
+    @Column
+    private String phoneNumber;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users")
     private Set<Role> roles;
+
+    @OneToOne
+    @JoinColumn
+    private SupplierProfile supplierProfile;
 }

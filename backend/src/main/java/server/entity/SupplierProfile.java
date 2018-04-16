@@ -12,15 +12,6 @@ public class SupplierProfile {
     @GeneratedValue
     private long id;
 
-    @Column(length = 30)
-    private String firstName;
-
-    @Column(length = 50)
-    private String lastName;
-
-    @Column(unique = true, nullable = false)
-    private String phoneNumber;
-
     @Column
     private String website;
 
@@ -36,15 +27,18 @@ public class SupplierProfile {
     @Column
     private String address;
 
-    @Column(length = 40)
+    @Column
     private String city;
 
-    @Column(length = 40)
+    @Column
     private String state;
 
     @Column
     private String country;
 
-    @Column(length = 1000)
+    @Column
     private String description;
+
+    @OneToOne(mappedBy = "supplierProfile")
+    private User user;
 }
