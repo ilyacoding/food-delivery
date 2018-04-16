@@ -12,7 +12,7 @@ public class Role {
     @GeneratedValue
     private Long id;
 
-    @Column
+    @Column(unique = true)
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL)

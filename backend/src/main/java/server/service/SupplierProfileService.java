@@ -4,21 +4,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import server.entity.Role;
 import server.entity.SupplierProfile;
-import server.entity.User;
 import server.exception.EntityNotFoundException;
-import server.repository.RoleRepository;
 import server.repository.SupplierProfileRepository;
-import server.repository.UserRepository;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Optional;
 
 @Service
@@ -83,7 +75,7 @@ public class SupplierProfileService {
 
                 return repository.save(supplierProfile);
             } else {
-                throw new EntityNotFoundException(User.class, "id", id.toString());
+                throw new EntityNotFoundException(SupplierProfile.class, "id", id.toString());
             }
         } catch (Exception exception) {
             logger.error(exception.getMessage());

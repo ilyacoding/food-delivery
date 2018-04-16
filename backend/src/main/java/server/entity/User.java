@@ -35,4 +35,13 @@ public class User {
     @OneToOne
     @JoinColumn
     private SupplierProfile supplierProfile;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Meal> meals;
+
+    @OneToMany(mappedBy = "user")
+    private Set<UserOrder> userOrders;
+
+    @OneToMany(mappedBy = "user")
+    private Set<ShoppingCart> shoppingCarts;
 }
