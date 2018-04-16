@@ -95,7 +95,7 @@ public class UserService {
         }
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public User findById(Long id) throws EntityNotFoundException {
         try {
             Optional<User> user = repository.findById(id);

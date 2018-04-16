@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    private final static Logger logger = LogManager.getLogger(UserController.class);
+    private final Logger logger = LogManager.getLogger(this.getClass());
 
     @GetMapping
     public ResponseEntity index(Pageable pageable) throws Exception {

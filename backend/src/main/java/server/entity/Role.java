@@ -11,8 +11,9 @@ public class Role {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column
     private String name;
-    private String description;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable

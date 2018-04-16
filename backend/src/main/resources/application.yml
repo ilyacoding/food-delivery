@@ -4,8 +4,8 @@ server:
     whitelabel:
     include-stacktrace: always
 security.jwt:
-  tokenExpirationTime: 1440 # Number of minutes
-  refreshTokenExpTime: 10080 # Minutes
+  tokenExpirationTime: 1440
+  refreshTokenExpTime: 10080
   tokenIssuer: Food Delivery Corp.
   tokenSigningKey: sao32iufns3295a
 spring:
@@ -17,4 +17,3 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
