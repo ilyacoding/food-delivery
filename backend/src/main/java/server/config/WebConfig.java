@@ -56,4 +56,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public ViewResolver csvViewResolver() {
         return new CsvViewResolver();
     }
+
+    @Bean
+    public ViewResolver pdfViewResolver() {
+        return new PdfViewResolver();
+    }
 }
