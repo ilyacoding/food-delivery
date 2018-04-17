@@ -1,56 +1,56 @@
 package server.controller;
 
 import org.springframework.data.domain.Pageable;
-import server.entity.User;
+import server.entity.Menu;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import server.service.UserService;
+import server.service.MenuService;
 
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/api/users")
-public class UserController {
+@RequestMapping(value = "/api/menus")
+public class MenuController {
 
     @Autowired
-    private UserService service;
+    private MenuService service;
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     @GetMapping
     public ResponseEntity index(Pageable pageable) throws Exception {
-        Iterable<User> list = service.findAll(pageable);
+        Iterable<Menu> list = service.findAll(pageable);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity show(@PathVariable Long id) throws Exception {
-        User user = service.findById(id);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        Menu menu = service.findById(id);
+        return new ResponseEntity<>(menu, HttpStatus.OK);
     }
 
-    @PostMapping("/register")
-    public ResponseEntity create(@RequestBody @Valid User user, @RequestParam("role") String role) throws Exception {
-        user = service.create(user, role.toUpperCase());
-        logger.info("Created new user with id = " + user.getId());
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    @PostMapping
+    public ResponseEntity create(@RequestBody @Valid Menu menu) throws Exception {
+        menu = service.create(menu);
+        logger.info("Created new menu with id = " + menu.getId());
+        return new ResponseEntity<>(menu, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable Long id, @RequestBody User user) throws Exception {
-        user = service.update(id, user);
-        logger.info("Updated user with id = " + id);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    public ResponseEntity update(@PathVariable Long id, @RequestBody Menu menu) throws Exception {
+        menu = service.update(id, menu);
+        logger.info("Updated menu with id = " + id);
+        return new ResponseEntity<>(menu, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Long id) throws Exception {
         service.delete(id);
-        logger.info("Deleted user with id = " + id);
+        logger.info("Deleted menu with id = " + id);
         return new ResponseEntity(HttpStatus.OK);
     }
 }

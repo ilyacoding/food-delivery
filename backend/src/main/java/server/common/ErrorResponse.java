@@ -5,13 +5,10 @@ import org.springframework.http.HttpStatus;
 import java.util.Date;
 
 public class ErrorResponse {
-    // HTTP Response Status Code
     private final HttpStatus status;
 
-    // General Error message
     private final String message;
 
-    // Error code
     private final ErrorCode errorCode;
 
     private final Date timestamp;
