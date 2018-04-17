@@ -3,7 +3,7 @@ package server.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Time;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -16,7 +16,7 @@ public class UserOrder {
     private Integer price;
 
     @Column
-    private Time deliverTime;
+    private LocalDateTime deliverTime;
 
     @Column
     private String addressLine1;
