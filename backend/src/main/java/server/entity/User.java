@@ -1,5 +1,6 @@
 package server.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -29,7 +30,8 @@ public class User {
     @Column
     private String phoneNumber;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users")
+    @ManyToMany
+    @JsonIgnoreProperties("users")
     private Set<Role> roles;
 
     @OneToOne
