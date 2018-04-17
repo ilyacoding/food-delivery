@@ -1,0 +1,15 @@
+package server.viewResolver;
+
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.ViewResolver;
+import server.view.PdfView;
+
+import java.util.Locale;
+
+public class PdfViewResolver implements ViewResolver {
+    @Override
+    public View resolveViewName(String s, Locale locale) throws Exception {
+        PdfView view = new PdfView();
+        return view;
+    }
+}

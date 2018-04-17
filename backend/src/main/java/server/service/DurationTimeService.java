@@ -81,6 +81,15 @@ public class DurationTimeService {
         }
     }
 
+    public Iterable<DurationTime> findAll() throws Exception {
+        try {
+            return repository.findAll();
+        } catch (Exception exception) {
+            logger.error(exception.getMessage());
+            throw exception;
+        }
+    }
+
     public DurationTime findById(Long id) throws EntityNotFoundException {
         try {
             Optional<DurationTime> durationTime = repository.findById(id);

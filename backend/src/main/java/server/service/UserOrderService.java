@@ -45,4 +45,13 @@ public class UserOrderService {
             throw exception;
         }
     }
+
+    public Iterable<UserOrder> findAll() throws Exception {
+        try {
+            return repository.findAll();
+        } catch (Exception exception) {
+            logger.error(exception.getMessage());
+            throw exception;
+        }
+    }
 }

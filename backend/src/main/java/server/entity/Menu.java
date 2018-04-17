@@ -19,7 +19,7 @@ public class Menu {
     private Integer price;
 
     @Column
-    private Integer description;
+    private String description;
 
     @ManyToOne
     private Category category;

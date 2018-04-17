@@ -81,6 +81,15 @@ public class CategoryService {
         }
     }
 
+    public Iterable<Category> findAll() throws Exception {
+        try {
+            return repository.findAll();
+        } catch (Exception exception) {
+            logger.error(exception.getMessage());
+            throw exception;
+        }
+    }
+
     public Category findById(Long id) throws EntityNotFoundException {
         try {
             Optional<Category> category = repository.findById(id);

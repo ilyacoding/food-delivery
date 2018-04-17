@@ -81,6 +81,15 @@ public class MenuService {
         }
     }
 
+    public Iterable<Menu> findAll() throws Exception {
+        try {
+            return repository.findAll();
+        } catch (Exception exception) {
+            logger.error(exception.getMessage());
+            throw exception;
+        }
+    }
+
     public Menu findById(Long id) throws EntityNotFoundException {
         try {
             Optional<Menu> menu = repository.findById(id);
