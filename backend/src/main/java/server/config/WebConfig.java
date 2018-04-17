@@ -52,4 +52,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return new XlsxViewResolver();
     }
 
+    @Bean
+    public ViewResolver csvViewResolver() {
+        return new CsvViewResolver();
+    }
 }
