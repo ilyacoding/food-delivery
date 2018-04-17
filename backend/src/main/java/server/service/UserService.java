@@ -111,6 +111,15 @@ public class UserService {
         }
     }
 
+    public Iterable<User> findAll() throws Exception {
+        try {
+            return repository.findAll();
+        } catch (Exception exception) {
+            logger.error(exception.getMessage());
+            throw exception;
+        }
+    }
+
     public User findById(Long id) throws EntityNotFoundException {
         try {
             Optional<User> user = repository.findById(id);
