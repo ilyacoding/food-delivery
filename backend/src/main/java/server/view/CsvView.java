@@ -20,7 +20,7 @@ public class CsvView extends AbstractCsvView {
         Object entitiesList = model.get(documentType);
         String[] header = new String[] {};
 
-        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.EXCEL_NORTH_EUROPE_PREFERENCE);
 
         if (Objects.equals(documentType, "users")) {
             header = new String[] { "Id", "FirstName", "LastName", "LastName", "PhoneNumber" };
