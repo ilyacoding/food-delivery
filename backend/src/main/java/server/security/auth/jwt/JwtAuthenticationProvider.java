@@ -35,12 +35,14 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
 
         Jws<Claims> jwsClaims = rawAccessToken.parseClaims(jwtSettings.getTokenSigningKey());
         String subject = jwsClaims.getBody().getSubject();
+        Long id = jwsClaims.getBody().get("id", Long.class);
+        String name = jwsClaims.getBody().get("name", String.class);
         List<String> scopes = jwsClaims.getBody().get("scopes", List.class);
         List<GrantedAuthority> authorities = scopes.stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
 
-        UserContext context = UserContext.create(subject, authorities);
+        UserContext context = UserContext.create(subject, name, id, authorities);
 
         return new JwtAuthenticationToken(context, context.getAuthorities());
     }
