@@ -15,9 +15,11 @@ import server.repository.RoleRepository;
 import server.repository.SupplierProfileRepository;
 import server.repository.UserRepository;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -114,6 +116,15 @@ public class UserService {
     public Iterable<User> findAll() throws Exception {
         try {
             return repository.findAll();
+        } catch (Exception exception) {
+            logger.error(exception.getMessage());
+            throw exception;
+        }
+    }
+
+    public Set<User> findByBirthday(LocalDate localDate) throws EntityNotFoundException {
+        try {
+            return repository.findByBirthday(localDate);
         } catch (Exception exception) {
             logger.error(exception.getMessage());
             throw exception;

@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Data
@@ -26,6 +27,9 @@ public class User {
 
     @Column
     private String lastName;
+
+    @Column
+    private LocalDate birthday;
 
     @Column
     private String phoneNumber;
