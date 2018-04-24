@@ -17,3 +17,19 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+  mail:
+    host: smtp.yandex.ru
+    port: 465
+    username: food.delivery.corp
+    password: 3to2dajnm29ykQ7
+    protocol: smtps
+    properties:
+      mail:
+        smtps:
+          starttls:
+            enable: true
+            required: true
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
