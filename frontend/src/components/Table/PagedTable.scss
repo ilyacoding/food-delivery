@@ -1,0 +1,15 @@
+@import "~assets/mixins/breakpoints";
+
+.paged-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+
+    @include media-query-less(lg) {
+        font-size: 0.8em;
+    }
+
+    @include media-query-less(sm) {
+        font-size: 0.7em;
+    }
+}

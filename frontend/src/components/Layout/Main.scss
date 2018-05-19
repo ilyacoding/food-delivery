@@ -1,0 +1,39 @@
+@import "~assets/stylesheets/mediaBreakpoints";
+@import "~assets/mixins/breakpoints";
+
+.main {
+    display: flex;
+    text-align: justify;
+    justify-content: space-between;
+
+    padding: 10px 50px;
+
+    @include media-query-less($handhelds) {
+        flex-direction: column;
+        align-content: center;
+
+        padding: 10px 20px;
+    }
+
+    &__content {
+        flex-grow: 1;
+        width: 80%;
+
+        @include media-query-less($handhelds) {
+            width: 100%;
+        }
+    }
+
+    &__sidebar {
+        flex-grow: 1;
+        width: 20%;
+
+        @include media-query-less($handhelds) {
+            width: 100%;
+        }
+    }
+
+    > * {
+        margin: 5px;
+    }
+}

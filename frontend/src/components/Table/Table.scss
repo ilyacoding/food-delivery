@@ -1,0 +1,38 @@
+@import "~assets/stylesheets/colors";
+@import "~assets/stylesheets/mediaBreakpoints";
+
+.table {
+    display: table;
+
+    width: 100%;
+    min-width: $table-min-width;
+
+    border-collapse: collapse;
+    border: 1px solid $company-black-color;
+    background-color: $company-white-color;
+
+    &__row {
+        display: table-row;
+        vertical-align: inherit;
+
+        width: 100%;
+        height: 3em;
+        padding-right: 1em;
+        padding-left: 1em;
+    }
+
+    &__header {
+        font-weight: 700;
+        border-bottom: 2px solid $company-black-color;
+    }
+
+    &__cell {
+        display: table-cell;
+        vertical-align: top;
+
+        padding: .75rem;
+        text-align: center;
+
+        border-bottom: 1px solid $company-black-color;
+    }
+}

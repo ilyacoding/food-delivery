@@ -1,0 +1,74 @@
+@import "~assets/stylesheets/colors";
+@import "~assets/mixins/breakpoints";
+
+.spinner {
+    margin: auto;
+    margin-top: 10%;
+
+    width: 100px;
+    height: 100px;
+
+    @include media-query-less(md) {
+        width: 70px;
+        height: 70px;
+    }
+
+    @include media-query-less(sm) {
+        width: 50px;
+        height: 50px;
+    }
+
+    &__cube {
+        width: 33%;
+        height: 33%;
+        background-color: $company-red-color;
+        float: left;
+        animation: spinnerCubesScaleDelay 1.3s infinite ease-in-out; 
+    }
+
+    &_cube1 {
+        animation-delay: 0.2s; 
+    }
+
+    &_cube2 {
+        animation-delay: 0.3s; 
+    }
+
+    &_cube3 {
+        animation-delay: 0.4s; 
+    }
+
+    &_cube4 {
+        animation-delay: 0.1s;
+    }
+
+    &_cube5 {
+        animation-delay: 0.2s; 
+    }
+
+    &_cube6 {
+        animation-delay: 0.3s; 
+    }
+
+    &_cube7 {
+        animation-delay: 0.0s;
+    }
+
+    &_cube8 {
+        animation-delay: 0.1s; 
+    }
+
+    &_cube9 {
+        animation-delay: 0.2s; 
+    }
+}
+
+@keyframes spinnerCubesScaleDelay {
+    0%, 70%, 100% {
+        transform: scale3D(1, 1, 1);
+    }
+
+    35% {
+        transform: scale3D(0, 0, 1);
+    }
+}

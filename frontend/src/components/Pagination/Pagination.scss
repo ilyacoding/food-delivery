@@ -1,0 +1,43 @@
+@import "~assets/stylesheets/colors";
+@import "~assets/stylesheets/mediaBreakpoints";
+@import "~assets/mixins/breakpoints";
+
+.pagination {
+    display: flex;
+    flex: 1 0 auto;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 3em;
+    min-width: $table-min-width;
+    padding-right: 1em;
+    padding-left: 1em;
+
+    border: 1px solid $company-black-color;
+    border-top: 2px solid $company-black-color;
+    font-weight: 700;
+
+    @include media-query-less($handhelds) {
+        height: 50px;
+    }
+
+    &__control
+    {
+        transition: all .4s ease;
+        vertical-align: middle;
+        margin-left: .3em;
+    }
+
+    &__control:hover
+    {
+        color: $company-red-color;
+    }
+
+    &__control--inactive
+    {
+        cursor : pointer;
+    }
+}
