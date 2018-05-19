@@ -1,0 +1,15 @@
+@import "~assets/mixins/breakpoints";
+
+.about {
+    &__project-logo {
+        display: block;
+
+        margin: 0 auto;
+
+        width: 45%;
+
+        @include media-query-less(sm) {
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,76 @@
+@import "~assets/stylesheets/colors";
+@import "~assets/stylesheets/mediaBreakpoints";
+@import "~assets/mixins/breakpoints";
+
+.tabs {
+    background: $company-white-color;
+    border: 1px solid $company-black-color;
+    border-radius: 3px;
+
+    &__tab-items {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        margin: 0;
+        padding: 0;
+
+        @include media-query-less($handhelds) {
+            flex-wrap: wrap;
+        }
+    }
+
+    &__tab-item {
+        display: flex;
+        flex: 1;
+
+        @include media-query-less($handhelds) {
+            flex-basis: 5em;
+        }
+    }
+
+    &__tab-item-label {
+        display: block;
+
+        padding: 8px 12px;
+        height: 100%;
+        width: 100%;
+
+        color: $company-primary-text-color;
+        border-bottom: 2px solid $company-background-color;
+        border-color: transparentize($company-red-color, 0.9);
+        text-decoration: none;
+        text-align: center;
+
+        &:hover {
+            background-color: $company-red-color;
+            color: $company-white-color;
+            transition: 0.5s;
+        }
+
+        @include media-query-less($handhelds) {
+            border: {
+                left: 1px solid transparentize($company-red-color, 0.9);
+                bottom: 1px solid transparentize($company-red-color, 0.9);
+                right: 1px solid transparentize($company-red-color, 0.9);
+            }
+        }
+    }
+
+    &_active-item {
+        border-bottom-color: $company-red-color;
+    }
+
+    &__tab-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        padding: 25px;
+
+        @include media-query-less($handhelds) {
+            flex-direction: column;
+            justify-content: space-around;
+        }
+    }
+}

@@ -1,0 +1,10 @@
+$font-family-main: 'Marmelad';
+
+@font-face {
+    font-family: $font-family-main;
+    font-style: normal;
+    font-weight: 400;
+    src: local('Marmelad'), local('Marmelad-Regular'),
+    url('~assets/fonts/marmelad-v6-cyrillic_latin-regular.woff2') format('woff2'),
+    url('~assets/fonts/marmelad-v6-cyrillic_latin-regular.woff') format('woff');
+}

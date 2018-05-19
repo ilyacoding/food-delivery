@@ -1,0 +1,72 @@
+@import "../stylesheets/mediaBreakpoints";
+
+@function get-next-breakpoint($name, $breakpoints: $breakpoints) {
+    $breakpoint-names: map-keys($breakpoints);
+    $n: index($breakpoint-names, $name);
+    @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+@function get-breakpoint-min-value($name, $breakpoints: $breakpoints) {
+    $min: map-get($breakpoints, $name);
+    @return if($min != 0, $min, null);
+}
+  
+@function get-breakpoint-max-value($name, $breakpoints: $breakpoints) {
+    $next: get-next-breakpoint($name, $breakpoints);
+    @return if($next, get-breakpoint-min-value($next, $breakpoints) - 1px, null);
+}
+
+@function get-breakpoint-infix($name, $breakpoints: $breakpoints) {
+    @return if(get-breakpoint-min-value($name, $breakpoints) == null, "", "-#{$name}");
+}
+
+
+@mixin media-query-greater($name, $breakpoints: $breakpoints) {
+    $min: get-breakpoint-min-value($name, $breakpoints);
+    @if $min {
+        @media (min-width: $min) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+@mixin media-query-less($name, $breakpoints: $breakpoints) {
+    $max: get-breakpoint-max-value($name, $breakpoints);
+    @if $max {
+        @media (max-width: $max) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+@mixin media-query-between($lower, $upper, $breakpoints: $breakpoints) {
+    $min: get-breakpoint-min-value($lower, $breakpoints);
+    $max: get-breakpoint-max-value($upper, $breakpoints);
+
+    @media (min-width: $min) and (max-width: $max) {
+        @content;
+    }
+}
+
+@mixin media-query-exact($name, $breakpoints: $breakpoints) {
+    $min: get-breakpoint-min-value($name, $breakpoints);
+    $max: get-breakpoint-max-value($name, $breakpoints);
+  
+    @if $min != null and $max != null {
+        @media (min-width: $min) and (max-width: $max) {
+            @content;
+        }
+    } @else if $max == null {
+        @include media-query-greater($name) {
+            @content;
+        }
+    } @else if $min == null {
+        @include media-query-less($name) {
+            @content;
+        }
+    }
+}

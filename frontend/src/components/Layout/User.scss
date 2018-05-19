@@ -1,0 +1,40 @@
+@import "~assets/stylesheets/colors";
+@import "~assets/stylesheets/mediaBreakpoints";
+@import "~assets/mixins/breakpoints";
+
+.user {
+    position: relative;
+
+    &__dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        background-color: $company-white-color;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+
+        @include media-query-less($handhelds) {
+            top: 35px;
+        }
+
+        a {
+            display: block;
+            color: $company-black-color;
+            padding: 12px 16px;
+            text-decoration: none;
+
+            &:hover{
+                background-color: $company-background-color;
+            }
+        }
+    }
+
+    &:hover &__dropdown-content {
+        display: block;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}

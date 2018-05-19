@@ -1,0 +1,54 @@
+@import "~assets/stylesheets/colors";
+@import "~assets/stylesheets/mediaBreakpoints";
+@import "~assets/mixins/breakpoints";
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding: 10px 50px;
+    min-height: 75px;
+    
+    border-bottom: 1px solid black;
+
+    @include media-query-less($handhelds) {
+        padding: 10px 10px;
+        flex-direction: column;
+    }
+
+    &__logo {
+        width: 150px;
+        height: 30px;
+    }
+
+    &__block {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+
+        @include media-query-less($handhelds) {
+            width: 100%;
+            justify-content: space-around;
+        }
+    }
+
+    &__item {
+        margin-left: 25px;
+
+        &:hover {
+            border-bottom: 1px solid $company-red-color;
+        }
+
+        @include media-query-less($handhelds) {
+            margin-left: 0px;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+        color: #000;
+    }
+}
