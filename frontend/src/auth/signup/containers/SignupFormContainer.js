@@ -10,7 +10,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     signup: signupUser
-    // checkIsEmailOccupied
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);

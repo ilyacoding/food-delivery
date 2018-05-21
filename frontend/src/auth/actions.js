@@ -14,7 +14,6 @@ export const { setCurrentUser, logout } = createActions({
             displayName: decodedToken.name,
             roles: new List(decodedToken.scopes)
         });
-        console.log(user.roles);
         return ({ user });
     },
 

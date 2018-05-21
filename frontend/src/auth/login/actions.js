@@ -12,13 +12,9 @@ export const { loginStart, loginSuccess } = createActions({
 export const loginError = createErrorAction(LOGIN_ERROR);
 
 export const loginUser = ({ email, password }) => async (dispatch) => {
-    // email = "hui@h.ui";
-    // password = "qwerty"
-    console.log(`${email} ${password} logined`);
     dispatch(loginStart(email, password));
     const service = new OAuthService();
     const result = await service.getAccessToken(email, password);
-    console.log(`${result} taken`);
     if (!result.isSuccess) {
         dispatch(loginError(result.error));
         return;

@@ -3,7 +3,6 @@ import { HttpStatusCode } from "/utils/http";
 
 import { refreshAccessToken } from "./api";
 import { accessTokenStore, refreshTokenStore } from "./authTokenStores";
-// import { AuthErrorCode } from "./constants";
 import { getAccessToken } from "./api";
 
 export const RefreshAccessTokenErrorType = {
@@ -18,9 +17,6 @@ export const GetAccessTokenErrorType = {
 };
 
 export default class OAuthService {
-    // constructor(errorTracker) {
-    //     this.errorTracker = errorTracker;
-    // }
 
     refreshAccessToken = async () => {
         try {
@@ -34,8 +30,6 @@ export default class OAuthService {
             if (response.ok) {
                 const accessToken = response.data.token;
                 accessTokenStore.set(accessToken);
-                // const newRefreshToken = response.data.refreshToken;
-                // refreshTokenStore.set(newRefreshToken);
 
                 return ServiceResult.createSuccess({ accessToken });
             }
@@ -44,10 +38,8 @@ export default class OAuthService {
                 return ServiceResult.createUnsuccess(RefreshAccessTokenErrorType.INVALID_REFRESH_TOKEN, "Недействительный refresh token");
             }
 
-            // this.errorTracker.trackUnsuccessfulResponse(response);
             return ServiceResult.createUnsuccess(RefreshAccessTokenErrorType.UNKNOWN_ERROR, "Произошла неизвестная ошибка при обновлении access token");
         } catch (error) {
-            // this.errorTracker.trackError(error);
             return ServiceResult.createUnsuccess(RefreshAccessTokenErrorType.UNKNOWN_ERROR, "Произошла неизвестная ошибка при обновлении access token");
         }
     }
@@ -69,10 +61,8 @@ export default class OAuthService {
                 return ServiceResult.createUnsuccess(GetAccessTokenErrorType.INVALID_CREDENTIALS, "Неверный логин или пароль");
             }
 
-            // this.errorTracker.trackUnsuccessfulResponse(response);
             return ServiceResult.createUnsuccess(GetAccessTokenErrorType.UNKNOWN_ERROR, "Что-то пошло не так. Пожалуйста, попробуйте позже");
         } catch (error) {
-            // this.errorTracker.trackError(error);
             return ServiceResult.createUnsuccess(GetAccessTokenErrorType.UNKNOWN_ERROR, "Что-то пошло не так. Пожалуйста, попробуйте позже");
         }
     }

@@ -1,61 +1,39 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import ImmutablePropTypes from "react-immutable-proptypes";
 
-import { USERS_ROUTE, LOGIN_ROUTE, SURVEYS_ROUTE } from "/constants";
-import hasAdminRole from "/utils/authorization/hasAdminRole";
+import { DownloadUsersDoc, DownloadMenusDoc, DownloadOrdersDoc, DownloadCategoriesDoc, DownloadDurationsDoc } from "./constants";
+import Spinner from "/components/Spinner/Spinner";
 
 import "./Sidebar.scss";
 
-const Sidebar = ({ roles, isAuthenticated }) => {
-    let usersButton = null;
-    if (hasAdminRole(roles)) {
-        usersButton =
-            <Link
-                className="sidebar__item"
-                to={`${USERS_ROUTE}/1`}>
-                Пользователи
-            </Link>;
-    }
+const Sidebar = ({ isAuthenticated }) => {
     return (
         isAuthenticated ? (
             <aside className="sidebar">
-                <Link
-                    className="sidebar__item"
-                    to={SURVEYS_ROUTE}>
-                    Новый опрос
-                </Link>
-                <Link
-                    className="sidebar__item"
-                    to={SURVEYS_ROUTE}>
-                    Мои опросы
-                </Link>
-                <Link
-                    className="sidebar__item"
-                    to={SURVEYS_ROUTE}>
-                    Шаблоны опросов
-                </Link>
-                {usersButton}
+                <a  className="sidebar__item"
+                    href={DownloadUsersDoc}>
+                    Мои пользователи
+                </a>
+                <a  className="sidebar__item"
+                    href={DownloadMenusDoc}>
+                    Мои меню
+                </a>
+                <a  className="sidebar__item"
+                    href={DownloadOrdersDoc}>
+                    Мои заказы
+                </a>
+                <a  className="sidebar__item"
+                    href={DownloadCategoriesDoc}>
+                    Мои категории
+                </a>
+                <a  className="sidebar__item"
+                    href={DownloadDurationsDoc}>
+                    Мои длительности заказов
+                </a>
             </aside>
         ) : (
-            <aside className="sidebar">
-                <Link
-                    className="sidebar__item"
-                    to={LOGIN_ROUTE}>
-                    Новый опрос
-                </Link>
-                <Link
-                    className="sidebar__item"
-                    to={LOGIN_ROUTE}>
-                        Мои опросы
-                </Link>
-                <Link
-                    className="sidebar__item"
-                    to={LOGIN_ROUTE}>
-                        Шаблоны опросов
-                </Link>
-            </aside>
+            <Spinner />
         )
     );
 };

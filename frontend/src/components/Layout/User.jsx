@@ -32,7 +32,7 @@ const User = ({ displayName, isAuthenticated, logout }) => (
                 </div>
             }
         </div>
-    </div >
+    </div>
 );
 
 User.propTypes = {
