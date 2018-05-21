@@ -3,7 +3,6 @@ import { accessTokenStore } from "/utils/oauth/authTokenStores";
 
 import OAuthService, { RefreshAccessTokenErrorType } from "./oAuthService";
 
-// export default (logoutUser, errorTrackerFactory) => (dispatch, getState) => async (apiCallFunction, params) => {
 export default (logoutUser) => (dispatch) => async (apiCallFunction, params) => {
 
     const accessToken = accessTokenStore.get();
@@ -14,8 +13,6 @@ export default (logoutUser) => (dispatch) => async (apiCallFunction, params) => 
         return response;
     }
 
-    // const errorTracker = errorTrackerFactory(getState());
-    // const service = new OAuthService(errorTracker);
     const service = new OAuthService();
     const result = await service.refreshAccessToken();
     if (!result.isSuccess) {

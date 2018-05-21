@@ -87,10 +87,6 @@ export const validateBirthday = birthday => {
         const error = new ValidationError(ErrorType.BIRTHDAY_DATE_FORMAT, "День рождения введён неверно");
         errors.push(error);
     }
-    // if (birthday.match(datePattern).index == -1){
-    //     const error = new ValidationError(ErrorType.BIRTHDAY_DATE_FORMAT, "День рождения введён неверно");
-    //     errors.push(error);
-    // }
 
     const isValid = errors.length === 0;
     return new ValidationResult(isValid, errors);

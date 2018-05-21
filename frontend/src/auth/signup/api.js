@@ -11,11 +11,7 @@ export const signup = (email, password, birthday, phoneNumber, firstName, lastNa
         firstName,
         lastName
     };
-    console.log(accountsUrl);
     const json = JSON.stringify(data);
 
     return httpFetcher.post(accountsUrl, json, { "Content-Type": MimeType.JSON });
 };
-
-// export const getIsEmailOccupied = (email) =>
-//     httpFetcher.get(`${accountsUrl}?email=${email}`);

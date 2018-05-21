@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { LOGIN_ROUTE, SIGNUP_ROUTE, FORGET_PASSWORD_ROUTE } from '/constants';
+import { LOGIN_ROUTE, SIGNUP_ROUTE } from '/constants';
 
 import './AuthenticationLinks.scss';
 
@@ -12,7 +12,6 @@ const AuthenticationLinks = () => {
         return (
             <div className='authentication-links'>
                 <Link to={SIGNUP_ROUTE}>Регистрация</Link>
-                // <Link to={FORGET_PASSWORD_ROUTE}>Забыли пароль?</Link>
             </div>
         );
     }
